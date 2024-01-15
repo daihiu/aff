@@ -15,9 +15,13 @@
             <button onclick="GenLinks()">Generate</button>
         </div>
 
+        <div>
+            <button onclick="CopyAllLinks()">Copy all</button>
+        </div>
         <div id="result">
 
         </div>
+
     </div>
 
     <script>
@@ -43,6 +47,17 @@
                 allLinks[i].style.fontWeight = "normal";
             }
         };
+
+        function CopyAllLinks(){
+            //copy all links in div with id="result" to clipboard
+            var allLinks = document.getElementsByTagName("a");
+            var allLinksArr = [];
+            for (let i = 0; i < allLinks.length; i++) {
+                allLinksArr.push(allLinks[i].href);
+            }
+            var allLinksStr = allLinksArr.join("\n");
+            navigator.clipboard.writeText(allLinksStr);
+        }
 
     </script>
 </body>
