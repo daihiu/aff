@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style="margin: 10px 0 20px 50px;">
+        <textarea name="" id="allGgDriveLinks" cols="150" rows="20"></textarea>
+
+        <div>
+            <button onclick="GenLinks()">Generate</button>
+        </div>
+
+        <div id="result">
+
+        </div>
+    </div>
+
+    <script>
+
+        function GenLinks() {
+            //split textare by , then remove space, then inner each link to <a> tag by column in div with id="result"
+            var allGgDriveLinks = document.getElementById("allGgDriveLinks").value;
+            var allGgDriveLinksArr = allGgDriveLinks.split(",");
+            var allGgDriveLinksArrNoSpace = [];
+            for (let i = 0; i < allGgDriveLinksArr.length; i++) {
+                allGgDriveLinksArrNoSpace.push(allGgDriveLinksArr[i].trim());
+            }
+            var result = document.getElementById("result");
+            result.innerHTML = "";
+            for (let i = 0; i < allGgDriveLinksArrNoSpace.length; i++) {
+                result.innerHTML += "<div style='margin: 10px 0 10px 0;'><a href='" + allGgDriveLinksArrNoSpace[i] + "' target='_blank'>" + allGgDriveLinksArrNoSpace[i] + "</a></div>";
+            }
+            //make it have css style of link in google sheet
+            var allLinks = document.getElementsByTagName("a");
+            for (let i = 0; i < allLinks.length; i++) {
+                allLinks[i].style.color = "#1155cc";
+                allLinks[i].style.textDecoration = "none";
+                allLinks[i].style.fontWeight = "normal";
+            }
+        };
+
+    </script>
+</body>
+
+</html>
